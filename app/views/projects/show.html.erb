@@ -1,0 +1,41 @@
+<div class="container">
+  <% if @packets.empty? %>
+    <div class="d-flex justify-content-center">
+      <h2 class="my-4">+ You Need to Add DIY Lessons!</h2>
+    </div>
+    <div class="d-flex justify-content-between mx-5">
+      <%= link_to "All Lessons", packets_path, class: "example_e" %>
+    <%= link_to "My Account", user_path(current_user), class: "example_e" %>
+    </div>
+  <% else %>
+    <div class="container mt-4 d-flex justify-content-center">
+      <h1><strong><%= @project.title.capitalize %></strong></h1>
+      <div class="border-bottom"></div>
+    </div>
+    <div class="d-flex justify-content-between mb-5">
+      <%= link_to "All Lessons", packets_path, class: "example_e" %>
+      <%= link_to "Account", user_path(current_user), class: "example_e" %>
+    </div>
+
+    <div class="container grid pl-5 pr-5 pb-5">
+      <div class="project-cards">
+        <%= render 'shared/packet_card', packets: @packets %>
+      </div>
+    </div>
+    <div class="container border border-success mb-3 tools-container p-2">
+      <h3 class="text-center">These are the tools you need:</h3>
+      <div class="row justify-content-center p-5">
+        <% @tools.each do |tool| %>
+          <div class="col-3">
+            <div class = "card tool-card ">
+              <div class="container d-flex flex-column align-items-center py-2 ">
+                <span class="tool-circle"><i class="<%= tool.icon_image %> tool-icon"></i></span>
+                <strong><%= tool.name %></strong>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>

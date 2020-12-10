@@ -1,0 +1,152 @@
+// User page avatar and banner styling
+
+.user-show-banner {
+  background-color: rgb(49, 145, 145);
+  width:100%;
+  height: 160px;
+  .user-show-avatar {
+    position: absolute;
+    left: 62px;
+    top: 150px;
+  }
+
+  .user-options {
+    padding-top: 105px;
+  }
+}
+
+.user-show-avatar-img {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+    border: white 2px solid;
+    object-fit: cover;
+    background-position: top center;
+  }
+
+// Tab link styling
+
+.tabs-underlined {
+  display: flex;
+  align-items: center;
+}
+
+.tabs-underlined .tab-underlined {
+  color: white;
+  padding: 8px;
+  margin: 8px 16px;
+  opacity: .6;
+  cursor: pointer;
+  text-decoration: none;
+  border-bottom: 4px solid transparent;
+}
+
+.tabs-underlined .tab-underlined.active {
+  opacity: 1;
+  border-bottom: 3px solid white;
+}
+
+
+// Main page content
+.user-tab-content {
+  width: 80%;
+}
+
+.user-info-box {
+  background-color: white;
+  color:#202c31;
+  height:400px;
+  width: 20%;
+  border-radius:16px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+  .user-details {
+    padding-top: 80px;
+
+  }
+}
+
+// packet cards 
+
+
+// Messages
+
+.notification {
+  overflow: hidden;
+  height: 120px;
+  background: white;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  display: flex;
+  align-items: center;
+  width: 850px;
+  border-radius:8px;
+  padding: 8px 16px;
+}
+
+.notification .img {
+  height: 120px;
+  object-fit: cover;
+  position: relative;
+  top: 10px;
+
+}
+
+.notification-content {
+  display:flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.notification-content h2 {
+  font-size: 16px;
+  margin: 15px;
+}
+
+.notification-content p {
+  font-size: 12px;
+  line-height: 1.4;
+  opacity: .7;
+  margin-bottom: 0;
+  margin-top: 8px;
+}
+
+.notification .notification-actions {
+  opacity: 0;
+  display: flex;
+  transition: ease .3s;
+  margin-bottom: 0;
+  margin-top: 8px
+}
+
+.notification:hover .notification-actions {
+  opacity: 1;
+}
+
+.notification .notification-actions a {
+  color: #999999;
+  margin-left: 40px;
+  font-size: 14px;
+}
+
+.card-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 12px;
+}
+
+.chatroom-container, .tools-container {
+  border-radius:8px;
+}
+
+.tools-container {
+  border-width: 1.5px !important;
+}
+
+
+.uploads-container {
+  width: 950px;
+}
+
+.projects-container {
+  width: 950px;
+}

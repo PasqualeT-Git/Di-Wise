@@ -1,0 +1,140 @@
+<div class="container p-3 d-flex justify-content-around">
+  <div class="col-12">
+    <div class="card m-5 pr-5 pl-5 pb-5">
+
+      <div class="container d-flex justify-content-between mb-3">
+        <div>
+          <div class="d-flex">
+            <h1 class="packet-title"><strong><%= @packet.title %> </strong></h1>
+            <div class = "d-flex container container-packet-show-rating align-items-center justify-content-center">
+              <%= @packet.rating %>
+              <% if @packet.packet_ratings.where(user: current_user).empty? %>
+                <%= link_to packet_packet_ratings_path(@packet,show: true), method: :post, remote: true do %>
+                  <span style="font-size: 2rem;">
+                    <span style="color: #6dde89;">
+                      <i class=" icon fas fa-heart"></i>
+                    </span>
+                  </span>
+                <% end %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+
+        <div class = "packet-show-avatar">
+          <% if @packet.user.photo.attached? %>
+            <%= cl_image_tag @packet.user.photo.key, class: "avatar-large dropdown-toggle", id:"navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+          <% else %>
+            <a class = "no-avatar-icon" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <span style="font-size: 58px;">
+                <span style="color: #6dde89;">
+                  <i class="fas fa-plus-circle"></i>
+                </span>
+              </span>
+            </a>
+          <% end %>
+          <div class="dropdown-menu dropdown-menu-right diwise-dropdown" aria-labelledby="navbarDropdown">
+           <%= link_to "See #{@packet.user.username}'s profile", user_path( @packet.user_id), class: "dropdown-item" %>
+           <%= link_to "Start a conversation with #{@packet.user.username}", packet_chatrooms_path(@packet), method: :post, class: "dropdown-item" %>
+          </div>
+        </div>
+      </div>
+      <div class=mt-5>
+        <nav>
+          <div class="nav nav-tabs d-flex justify-content-center mt-3" id="nav-tab" role="tablist">
+            <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Photos</a>
+            <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Videos</a>
+            <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Tips</a>
+            <a class="nav-item nav-link" id="nav-tools-tab" data-toggle="tab" href="#nav-tools" role="tab" aria-controls="nav-tools" aria-selected="false">Tools</a>
+          </div>
+        </nav>
+      </div>
+
+      <div class="tab-content my-3" id="nav-tabContent">
+        <!-- Photos tab with carousel -->
+        <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+          <% if @packet.photos %>
+            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+              <ol class="carousel-indicators">
+                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+              </ol>
+              <div class="carousel-inner">
+                <% @packet.photos.each_with_index do |photo, index| %>
+                  <div class="carousel-item <%= 'active' if index == 0 %>">
+                    <%= cl_image_tag photo.key, class: "carousel-image d-block", crop: :fill %>
+                  </div>
+                <% end %>
+              </div>
+              <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+              </a>
+              <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+              </a>
+            </div>
+          <% end %>
+        </div>
+        <!-- Videos tab with upload options -->
+        <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+          <% if !@packet.youtube_url.empty? && @packet.video %>
+            <div>
+              <iframe width='820px' height='500px' src="https://www.youtube.com/embed/<%= @packet.youtube_url %>", frameborder=""></iframe>
+            </div>
+            <div>
+              <%= video_tag @packet.video, controls: true, crop: :fill %>
+            </div>
+          <% elsif !@packet.youtube_url.empty? %>
+            <iframe width='100%' height='500px' src="https://www.youtube.com/embed/<%= @packet.youtube_url %>", frameborder=""></iframe>
+          <% elsif @packet.video %>
+            <%= video_tag @packet.video, controls: true, crop: :fill, class: "w-100" %>
+          <% else %>
+            <%  if  @packet.user == current_user%>
+            <%= simple_form_for @packet do |f| %>
+              <%= f.input :youtube_url, label: 'Add a Youtube URL', input_html: { maxlength: 500, size: 500} %>
+            <% end %>
+            <% end %>
+          <% end %>
+        </div>
+
+        <!-- Tips tab -->
+        <div class="tab-pane fade text-center" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+          <div class="description">
+            <%= @packet.description %>
+          </div>
+        </div>
+        <!-- Tools tab-->
+        <div class="tab-pane fade text-center" id="nav-tools" role="tabpanel" aria-labelledby="nav-tools-tab">
+          <div class= "container my-2">
+            <div class="description"> <%= @packet.user.username %> recommends these tools:</div>
+             <div class="row justify-content-center pt-3">
+              <% @packet.tools.each do |tool| %>
+                <div class="col-3">
+                  <div class = "card tool-card ">
+                    <div class="container d-flex flex-column align-items-center py-2">
+                      <span class="tool-circle"><i class="<%= tool.icon_image %> tool-icon"></i></span>
+                      <strong><%= tool.name %></strong>
+                    </div>
+                  </div>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+
+      <div class="text-center project-title mt-5" id="project-packet-title">
+        Which project do you want to add this to?
+      </div>
+      <%= simple_form_for [@packet, @project_packet] do |f| %>
+        <%= f.input :project, label: false, collection: current_user.projects %>
+          <div class="button_cont" align="center">
+          <%= f.button :submit, class: "example_e" %>
+          <%= link_to "Back", packets_path, class: "back-button" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,47 @@
+<!-- Cover photo -->
+<!-- <div class="banner" style="background-image: linear-gradient(180deg, rgba(196, 196, 196, 0.56) 0%, rgba(255, 255, 255, 0) 300%), url(https://res.cloudinary.com/dynjb5ftd/image/upload/v1590656895/DI_WISE/oxa-roxa-oHoOrmEms38-unsplash_hp9u1x.jpg);"> -->
+<div class="banner" style="background-image: linear-gradient(180deg, rgba(196, 196, 196, 0.30) 0%, rgba(255, 255, 255, 0) 300%), url(<%= image_path 'home.jfif' %>);">
+  <div class="container text-center">
+    <div class="landing-text">
+      <h1 class="mb-4">Anyone. Any Project.</h1>
+      <h3 class="my-4">Join the online community nailing it themselves.</h3>
+      <div class="scroll pt-4">
+        <a id="scroll-button">
+          <i class="fa fa-chevron-down"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- How it works -->
+<div class="d-flex justify-content-around">
+  <h2 class="text-center p-2 mt-4 mb-4 border-bottom border-dark w-75 how-it-works" >How it works</h2>
+</div>
+<div>
+  <div class="banner-cards d-flex justfy-content-around">
+    <div class="banner-card">
+      <%= image_tag "search.png", alt: "alttext" %>
+      <h4>Be inspired</h4>
+      <p>Search all lessons from the DI-WISE community</p>
+    </div>
+    <div class="banner-card">
+      <%= image_tag "learn.png", alt: "alttext" %>
+      <h4>Build projects</h4>
+      <p>Get all the information in one place by saving lessons to your profile</p>
+    </div>
+    <div class="banner-card">
+      <%= image_tag "chat.png", alt: "alttext" %>
+      <h4>Connect</h4>
+      <p>Message an owner of a lesson to chat all things DIY</p>
+    </div>
+  </div>
+</div>
+
+<!-- Trending projects -->
+<div class ="container mb-5">
+  <h3 class= "text-center p-2 mt-5 mb-4 border-bottom border-dark ">Trending Projects</h3>
+  <div class="home-cards">
+    <%= render 'shared/packet_card', packets: @packets %>
+  </div>
+</div>

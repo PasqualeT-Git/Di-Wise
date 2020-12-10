@@ -1,0 +1,35 @@
+.tool-cards-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: auto;
+  column-gap: 16px;
+  grid-row-gap: 16px;
+  .tool-card {
+    display: flex;
+    border: 1px solid rgba(107, 107, 107, 0.1);
+    box-shadow: 0px 1px 10px 5px rgba(0,0,0,0.07);
+    border-radius: 8px;
+    font-size: 18px;
+    font-style: bold;
+    text-align:center;
+    justify-content: center;
+    align-content: center;
+  }
+}
+
+.tool-circle {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  border-radius: 50%;
+  background:#4da7a7;
+  height:80px;
+  width: 80px;
+  .tool-icon {
+  	font-size: 2rem;
+    padding:20px;
+    margin: 10px;
+    color:white;
+    border-radius: 50%;
+  }
+}

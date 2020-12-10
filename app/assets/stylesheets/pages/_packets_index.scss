@@ -1,0 +1,14 @@
+.index-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 40px;
+  .card-img-top {
+    height: 250px;
+    object-fit:cover;
+    justify-content: center;
+  }
+}
+
+.sort-by {
+  padding-bottom: 12px;
+}

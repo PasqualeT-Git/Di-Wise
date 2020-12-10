@@ -1,0 +1,67 @@
+<div class="navbar navbar-expand-sm navbar-dark navbar-diwise" style="background-color:#202C31;" >
+  <!-- Logo -->
+  <div class= "nav-item">
+    <%= link_to root_path, class: "navbar-brand" do %>
+      <strong>DI-WISE</strong>
+  <% end %>
+
+  <!-- Search Form -->
+    <div class="search-form-control form-group">
+      <%= form_tag packets_path, method: :get do %>
+        <%= text_field_tag :query, params[:query], class: "form-control", placeholder: "What are you looking for?" %>
+        <%= button_tag "Search", class: "btn search-btn" do %><i class="fa fa-search"></i><% end %>
+      <% end %>
+    </div>
+  </div>
+
+  <!-- Nav Buttons -->
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class = "navbar-nav">
+
+      <!-- Categories Dropdown -->
+      <li class= "nav-item dropdown mx-3">
+        <a class="top-nav" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Categories</a>
+          <div class="dropdown-menu dropdown-menu-right diwise-dropdown" aria-labelledby="navbarDropdown">
+            <% Category.all.each do |category| %>
+              <%= link_to category.name, category_path(category), class: "dropdown-item" %>
+            <% end %>
+          </div>
+      </li>
+
+  <!-- All -->
+      <li class="nav-item active mx-3">
+        <%= link_to "Browse All Lessons", packets_path, class: "top-nav" %>
+      </li>
+
+  <!-- User Dropdown -->
+      <% if user_signed_in? %>
+        <li class="nav-item dropdown ml-3">
+        <% if current_user.photo.attached? %>
+          <%= cl_image_tag current_user.photo.key, class: "avatar-bordered dropdown-toggle", id:"navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+        <% else %>
+          <a id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span style="font-size: 2rem;">
+              <span style="color: #6dde89;">
+                <i class="fas fa-plus-circle"></i>
+              </span>
+            </span>
+          </a>
+        <% end %>
+        <div class="dropdown-menu dropdown-menu-right diwise-dropdown" aria-labelledby="navbarDropdown">
+          <%= link_to "My Account", user_path(current_user), class: "dropdown-item" %>
+          <%= link_to "Add DIY Lesson", new_packet_path, class: "btn btn-warning", class: "dropdown-item" %>
+          <%= link_to "Sign out", destroy_user_session_path, :method => :delete, class: "dropdown-item" %>
+        </div>
+        </li>
+      <% else %>
+        <li class="nav-item mr-3">
+          <a><%= link_to "Login", new_user_session_path, class: "top-nav" %></a>
+        </li>
+        <li class="nav-item">
+          <a><%= link_to "Sign Up", new_user_registration_path, class: "top-nav"%></a>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
+

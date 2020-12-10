@@ -1,0 +1,31 @@
+.form-inputs input {
+  background-color: white!important;
+  // border-left: #084c61;
+  // border-color: rgba(231, 255, 214, 0.4)!important;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.form-inputs p {
+  font-family: 'Montserrat', sans-serif;
+}
+
+.select2-container {
+  width: 100%!important;
+}
+
+.select2-container--default .select2-selection--multiple {
+    background-color: white;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    cursor: text;
+}
+
+.form-check-label {
+    color: gray;
+}
+
+.card {
+  box-shadow: -1px 6px 25px 6px rgba(32,44,49,0.68);
+  margin-bottom: 36px;
+  border-radius: 12px;
+}

@@ -1,0 +1,71 @@
+
+.example_e {
+border: none;
+background: #202c31;
+color: #ffffff !important;
+font-weight: 100;
+padding: 20px;
+text-transform: uppercase;
+border-radius: 6px;
+display: inline-block;
+transition: all 0.3s ease 0s;
+}
+
+.example_e:hover {
+color: #404040 !important;
+font-weight: 700 !important;
+letter-spacing: 3px;
+background: none;
+-webkit-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+-moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+transition: all 0.3s ease 0s;
+}
+
+.back-button {
+  text-decoration: none;
+  color: gray;
+  display: flex;
+  justify-content: center;
+  margin-top: 12px;
+  font-size: 16px;
+  font-weight: lighter;
+}
+
+.back-button:hover {
+  text-decoration: none;
+  color: black;
+  display: flex;
+  justify-content: center;
+}
+
+.upload-button {
+  background-color: gray;
+  display: flex;
+  justify-content: center;
+  border-radius: 6px;
+  color: #ffffff
+}
+
+#form-title {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.upload-photo {
+  border: 1px solid #d3d3d3;
+  padding: 16px 24px;
+  cursor: pointer;
+  font-weight: 500;
+  background: white;
+  border-radius: 2px;
+}
+
+.form-inline {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 8px;
+}
+
+.image {
+  background-size: contain;
+}

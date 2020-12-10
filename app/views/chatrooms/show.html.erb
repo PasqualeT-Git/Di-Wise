@@ -1,0 +1,47 @@
+<div class="chat_window my-4">
+  <div class="top_menu">
+      <div class="buttons">
+          <div class="button"><%= link_to packets_path do %>
+            <i class="fas fa-times"></i>
+          <% end %>
+          </div>
+          <div class="button"><span style="color: #f96d80;"><i class="far fa-user"></i></span></div>
+          <div class="button"><span style="color: #ea907a;"><i class="far fa-comments"></i></span></div>
+          <div class="button"><span style="color: #3fc5f0;"><i class="far fa-user"></i></span></div>
+      </div>
+
+      <div class="title">Let's talk about: <em><%= @chatroom.name %></em>
+      </div>
+  </div>
+  <ul class="messages">
+    <div id="messages" data-chatroom-id="<%= @chatroom.id %>">
+      <% @chatroom.messages.each do |message| %>
+        <div class="message-container" id="message-<%= message.id %>">
+          <i class="author">
+            <% if message.user.photo.attached? %>
+              <%= cl_image_tag message.user.photo.key, class: "avatar-large" %>
+            <% else %>
+              <span style="font-size: 58px;">
+                <span style="color: #6dde89;">
+                  <i class="fas fa-plus-circle"></i>
+                </span>
+              </span>
+            <% end %>
+            <span><%= message.user.username %></span>
+            <small><%= message.created_at.strftime("%a %b %e at %l:%M%p") %></small>
+          </i>
+          <p class = "mt-2"><%= message.content %></p>
+        </div>
+      <% end %>
+    </div>
+  </ul>
+  <div class="bottom_wrapper clearfix">
+    <%= simple_form_for [ @chatroom, @message ], remote: true, html: { autocomplete: 'off' } do |f| %>
+      <div class="message_input_wrapper">
+        <%= f.input :content, label: false, placeholder: "Message #{@chatroom.packet.user.username}", input_html: { class: 'message_input' } %>
+      </div>
+        <%= f.button :submit, "Send", class: "send_message" %>
+    <% end %>
+  </div>
+</div>
+

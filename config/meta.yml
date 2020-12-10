@@ -1,0 +1,5 @@
+meta_product_name: "DI-Wise"
+meta_title: "DI-Wise - Anyone. Any Project."
+meta_description: "An online community for DIY-lovers, a space to share hacks and lessons for every project"
+meta_image: "image001.jpg" # should exist in `app/assets/images/`
+twitter_account: "@product_twitter_account"   # required for Twitter Cards

@@ -1,0 +1,10 @@
+<div class="tool-cards-grid">
+  <% @packet.tools.each do |tool| %>
+	<div class = "card tool-card ">
+	   <div class="container d-flex flex-column align-items-center py-2">
+	   	<span class="tool-circle"><i class="<%= tool.icon_image %> tool-icon"></i></span>
+	   <strong><%= tool.name %></strong>
+	   </div>
+	</div>
+  <% end %> 	
+</div>
